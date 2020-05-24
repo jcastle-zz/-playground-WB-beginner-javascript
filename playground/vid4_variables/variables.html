@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Variables!</title>
+  <link rel="stylesheet" href="../base.css" />
+</head>
+
+<body>
+  <script>
+    // semi-colon used to define a statement, often at end of JS line
+    // any time you want to do some in JS, it's called a statement
+    // don't need semi-colon after code block {} - these would be function
+    // definitions, if, loops, etc.
+
+    // ASI = automatic semicolon insertion
+    // don't have to use semi-colon, best to learn with them
+
+    // 'use strict'; forces variables to be declared with var, let, or const
+
+    // var and let can be updated, const cannot
+    // var variables function scoped
+    // let and const are block scoped or within {}
+
+    // const by default, change to let if needs to change, almost never use var
+
+    // function scoped
+    const first = 'wes';
+
+    // block scoped
+    let age = 300;
+    const cool = true;
+
+    // don't need let or var when redefining variable
+    age = 400;
+
+    // as a convention, variables should not start with a capital letter
+    // unless they are a class
+
+    // $ associated with JQuery, _ associated with Lodash
+
+    // const variable cannot be changed and will error
+    const Dog = 'bowser'; // bad naming form since this is not a class
+
+    // camel case - every word inside variable contains an upper case except first one
+    const iLovePizza = true;
+
+    // UpperCamelCase
+    const ILoveToEatHotDogs = false;
+
+    // snake case! ESLint doesn't like this format
+    // const this_is_snake_case = 'cool';
+
+    // kebab case - not allowed in JS because dashes are not allowed
+    // const this-is-an-example = cool;
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+console.log('Pixelated Face');
+const video = document.querySelector('.webcam');
+const canvas = document.querySelector('.video'); // main canvas
+
+const ctx = canvas.getContext('2d'); // where we do the drawing
+
+const faceCanvas = document.querySelector('.face'); // canvas were our face shows
+
+const faceCtx = faceCanvas.getContext('2d'); // where we do the drawing
+
+const SIZE = 10;
+const SCALE = 1.35; // Make a new face detector
+
+const faceDetector = new window.FaceDetector(); // okay to use window here because it doesn't exist in NodeJS
+// Write a function that will populate the users video
+
+async function populateVideo() {
+  const stream = await navigator.mediaDevices.getUserMedia({
+    video: {
+      width: 1280,
+      height: 720
+    }
+  }); // console.log(stream); // Doesn't run because we can't run functions in console with bundler.
+  // window.populateVideo = populateVideo(); // This is a way around the bundler issue with the console.
+
+  video.srcObject = stream; // Grabs stream from webcam.
+
+  await video.play(); // Plays webcam after page loads.
+  // Size the canvases to be the same size as the video.
+
+  console.log(video.videoWidth, video.videoHeight);
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  faceCanvas.width = video.videoWidth;
+  faceCanvas.height = video.videoHeight;
+} // We want to interact with the face detection API.
+
+
+async function detect() {
+  const faces = await faceDetector.detect(video); // console.log(faces);
+  // Ask the browser when next animation frame it, and tell it to run detect for us.
+  //   faces.forEach(drawFace);
+  //   faces.forEach(censor);
+  //   requestAnimationFrame(detect);
+} // Need to outline the face to know what to cover.
+
+
+function drawFace(face) {
+  const {
+    width,
+    height,
+    top,
+    left
+  } = face.boundingBox;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = '#ffc600';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(left, top, width, height);
+} // Create function to pixelate the square.
+
+
+function censor({
+  boundingBox: face
+}) {
+  faceCtx.imageSmoothingEnabled = false;
+  faceCtx.clearRect(0, 0, faceCanvas.width, faceCanvas.height); // draw the small face
+
+  faceCtx.drawImage( // 5 source args
+  video, // where does the source come from?
+  face.x, // where do we start the source pull from?
+  face.y, face.width, face.height, // 4 draw args
+  face.x, // where should we start drawing x and y
+  face.y, SIZE, SIZE); // draw the small face back on, but scale up
+
+  const width = face.width * SCALE;
+  const height = face.height * SCALE;
+  faceCtx.drawImage(faceCanvas, face.x, face.y, SIZE, SIZE, // drawing args
+  face.x - (width - face.width) / 2, face.y - (height - face.heigh) / 2, width, height);
+} // console.log(populateVideo); // This is a better way to run the function. Can store in console as a temporary variable if you want to access it.
+
+
+populateVideo().then(detect);

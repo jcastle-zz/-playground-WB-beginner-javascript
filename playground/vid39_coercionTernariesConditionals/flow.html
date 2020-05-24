@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../base.css">
+</head>
+
+<body>
+    <script>
+        /* eslint-disable */
+        // Have situation where using else, then you want opposite. Can use the bang for the opposite. The bang operator also does coercion - forcing a different type into a true boolean. !name = false, !!name = true
+        // If see ! and !! in if statements, it's because someone is taking truthy values and coercing them.
+        // Coercion one type into another or value into bolean.
+
+        // Ternary - short hand if statement. Helpful when you want to assign functionality based on something being true or false.
+        // const count = 0;
+        // let word;
+        // if (count === 1) {
+        //     word = 'item';
+        // } else {
+        //     word = 'items';
+        // }
+        const count = 1;
+
+        // Ternary
+        // 1. Condition
+        // 2. What to do if true
+        // 3. What to do if false
+        const word = count === 1 ? 'item' : 'items';
+        const sentence = `You have ${count} ${word} in your cart`;
+        console.log(sentence);
+    </script>
+</body>
+
+</html>

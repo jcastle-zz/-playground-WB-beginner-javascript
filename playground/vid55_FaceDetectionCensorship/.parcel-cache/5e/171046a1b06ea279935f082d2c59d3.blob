@@ -1,0 +1,13 @@
+console.log('Pixelated Face');
+const video = document.querySelector('.webcam');
+const canvas = document.querySelector('.video'); // main canvas
+
+const ctx = canvas.getContext('2d'); // where we do the drawing
+
+const faceCanvas = document.querySelector('.face'); // canvas were our face shows
+
+const faceCtx = canvas.getContext('2d'); // where we do the drawing
+// Make a new face detector
+
+const faceDetector = new FaceDetector();
+console.log(video, canvas, faceCanvas, faceDetector);

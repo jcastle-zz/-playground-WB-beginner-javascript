@@ -1,0 +1,4 @@
+console.log('Pixelated Face');
+const video = document.querySelector('.webcam');
+const canvas = document.querySelector('.video');
+const faceCanvas = document.querySelector('.face');

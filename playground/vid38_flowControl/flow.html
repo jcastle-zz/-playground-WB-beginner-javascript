@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../base.css">
+</head>
+
+<body>
+    <h2>Truthy values</h2>
+
+    * 1 - will equate to true, really all other numbers
+    * string with content, string with anything except string with nothing (" ")
+    * array with values and not values in it
+    * {} or empty object, works because there is something there
+
+    <h2>Falsy values</h2>
+
+    * 0 - will equate to false
+    * undefined
+    * null
+    * NaN - not a number
+
+    <script>
+        /* eslint-disable */
+        // Conditional statement that can only return true or false.
+        // As soon as if statement is true, then it goes onto another block of code.
+        const age = 30;
+
+        if (age > 40) {
+            console.log('yep');
+        } else if (age > 20) {
+            console.log('nope');
+        } else {
+            console.log('nothing is true');
+        }
+
+        function slugify(sentence, lowercase) {
+            if (lowercase) {
+                // includes regex, open and close with /
+                // \s is for all spaces, g means in all text
+                return sentence.replace(/\s/g, '-').toLowerCase();
+            }
+            return sentence.replace(/\s/g, '-');
+        }
+        // if you have an if inside a function, you can return to a function
+        console.log(slugify('I am cool', true));
+
+        // does not equal uses !, best practice is !==
+        // operators only ever deal with numbers, if you use a string, it will turn it into a number first
+        // or is || (pipe, pipe), && is for and
+
+        // if statements can be truthy and falsy
+
+    </script>
+</body>
+
+</html>

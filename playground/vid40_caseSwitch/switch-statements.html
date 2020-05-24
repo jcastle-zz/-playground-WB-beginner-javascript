@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switch statements</title>
+    <link rel="stylesheet" href="../../base.css">
+</head>
+
+<img width='200' src="../turtle.png" alt="turt" class="turt">
+
+<body>
+
+    <script>
+        /* eslint-disable */
+        // didn't finish example to get turtle moving, couldn't get the keydown to work on laptop
+        const turtle = document.querySelector(".turt");
+
+        function handleKeyDown(event) {
+            if (!event.key.includes('Arrow')) { return; }
+            console.log(event.key);
+        }
+
+        window.addEventListener('keydown', handleKeyDown);
+    </script>
+</body>
+
+</html>

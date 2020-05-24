@@ -1,0 +1,43 @@
+console.log('Pixelated Face');
+const video = document.querySelector('.webcam');
+const canvas = document.querySelector('.video'); // main canvas
+
+const ctx = canvas.getContext('2d'); // where we do the drawing
+
+const faceCanvas = document.querySelector('.face'); // canvas were our face shows
+
+const faceCtx = canvas.getContext('2d'); // where we do the drawing
+// Make a new face detector
+
+const faceDetector = new window.FaceDetector(); // okay to use window here because it doesn't exist in NodeJS
+// Write a function that will populate the users video
+
+async function populateVideo() {
+  const stream = await navigator.mediaDevices.getUserMedia({
+    video: {
+      width: 1280,
+      height: 720
+    }
+  }); // console.log(stream); // Doesn't run because we can't run functions in console with bundler.
+  // window.populateVideo = populateVideo(); // This is a way around the bundler issue with the console.
+
+  video.srcObject = stream; // Grabs stream from webcam.
+
+  await video.play(); // Plays webcam after page loads.
+  // Size the canvases to be the same size as the video.
+
+  console.log(video.videoWidth, video.videoHeight);
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  faceCanvas.width = video.videoWidth;
+  faceCanvas.height = video.videoHeight;
+} // We want to interact with the face detection API.
+
+
+async function detect() {
+  const faces = await faceDetector.detect(video);
+  console.log(faces);
+} // console.log(populateVideo); // This is a better way to run the function. Can store in console as a temporary variable if you want to access it.
+
+
+populateVideo();

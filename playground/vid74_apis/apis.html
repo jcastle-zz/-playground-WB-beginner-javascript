@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working with APIs</title>
+</head>
+
+<body>
+    <script>
+        // AJAX = asynchronous XML - fetching data from an API and displaying on a page.
+
+        /* eslint-disable */
+        const endpoint = 'https://api.github.com/users/jcastle';
+        const githubPromise = fetch(endpoint);
+
+        function handleError(err) {
+            console.log('Oh no!');
+            console.log(err);
+        }
+
+        githubPromise
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                console.log(data.name);
+                console.log(data.blog);
+            })
+            .catch(handleError);
+    </script>
+</body>
+
+</html>
